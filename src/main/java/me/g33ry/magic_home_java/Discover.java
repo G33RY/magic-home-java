@@ -1,3 +1,5 @@
+package me.g33ry.magic_home_java;
+
 import java.io.IOException;
 import java.net.*;
 import java.util.Enumeration;

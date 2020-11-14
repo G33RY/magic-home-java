@@ -1,4 +1,5 @@
-import org.json.simple.JSONArray;
+package me.g33ry.magic_home_java;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 

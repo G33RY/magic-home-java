@@ -1,4 +1,5 @@
-import org.junit.Test;
+import me.g33ry.magic_home_java.Controller;
+import me.g33ry.magic_home_java.Discover;
 
 import java.io.IOException;
 
