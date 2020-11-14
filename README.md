@@ -4,8 +4,8 @@ The functionality was ported from https://github.com/jangxx/node-magichome to Ja
 ## Features
 Control MagicHue lights
 
-Controller: Turn the lights on and off. Set Colors. Store a name to use with a controller
-Discover: Discover Magic Home lights on the network
+**Controller:** Turn the lights on and off. Set Colors. Store a name to use with a controller      
+**Discover:** Discover Magic Home lights on the network
 
 ## Usage
 You can download the JAR library from the releases page or [here](https://github.com/G33RY/magic-home-java/releases/tag/1.0).
