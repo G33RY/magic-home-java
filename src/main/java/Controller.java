@@ -1,6 +1,13 @@
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileReader;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -45,8 +52,15 @@ public class Controller {
         this.MODEL = model;
         this.NAME = model;
 
-        HashMap<String, Object> state = this.queryState();
+        JSONObject names = this.readNames();
+        if(names.containsKey(this.IP)) {
+            this.NAME = (String) names.get(this.IP);
+        }else{
+            names.put(this.IP, model);
+            writeNames(names);
+        }
 
+        HashMap<String, Object> state = this.queryState();
         this.LastColor = new HashMap<>() {{
             put("red", (Byte) state.get("colors.red"));
             put("green", (Byte) state.get("colors.green"));
@@ -73,6 +87,21 @@ public class Controller {
 
     public String getNAME() {
         return NAME;
+    }
+
+    public void setNAME(String name){
+        this.NAME = name;
+
+        JSONObject names = readNames();
+
+        if(names.containsKey(this.IP)){
+            names.replace(this.IP, name);
+        }else{
+            names.put(this.IP, name);
+        }
+
+        this.writeNames(names);
+
     }
 
     @Override
@@ -279,6 +308,29 @@ public class Controller {
             return true;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    private JSONObject readNames() {
+        try{
+            FileReader reader = new FileReader("names.json");
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+
+            return jsonObject;
+        }catch (Exception e){
+            System.out.println("fasz");
+            JSONObject jsonObject = new JSONObject();
+            this.writeNames(jsonObject);
+            return jsonObject;
+        }
+    }
+
+    private void writeNames(JSONObject object) {
+        try{
+            Files.write(Paths.get("names.json"), object.toJSONString().getBytes());
+        }catch (Exception e){
+            System.out.println(e.toString());
         }
     }
 
