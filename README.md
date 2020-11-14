@@ -14,6 +14,8 @@ Then you can import it to your Java 11+ Project.
 ##### Importing the library to Intellj IDEA
 **File** --> **Project Structure** --> **Libraries** --> **Press the + button** --> **Select JAR File** --> **OK**
 
+
+##### Basic example
 ```
 Controller[] controllers = Discover.Scan(); // Scan for available controllers on the network
 
