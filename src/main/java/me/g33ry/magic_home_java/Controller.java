@@ -320,7 +320,6 @@ public class Controller {
 
             return jsonObject;
         }catch (Exception e){
-            System.out.println("fasz");
             JSONObject jsonObject = new JSONObject();
             this.writeNames(jsonObject);
             return jsonObject;
